@@ -18,8 +18,16 @@ quit
 The `Scanner` loop is already written for you.
 
 1. Where is `main()`?
+
+in robot sim
+
 2. Which class contains four `Motor` objects?
+
+Drivetrain
+
 3. Find the `drive()` method in `Drivetrain`. How does having this method save us work elsewhere in the program?
+
+we dont have to manually change the motors, instead we just call drive.
 
 ## 1. Guided example: Arm extends Mechanism
 

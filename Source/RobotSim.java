@@ -10,7 +10,9 @@ public class RobotSim {
         Arm arm = new Arm();
 
         // IN CLASS: After writing Elevator.java, replace null with new Elevator().
-        Mechanism elevator = null;
+        Elevator elevator = new Elevator();
+
+        Climber climber = new Climber();
 
         BatteryMonitor battery = new BatteryMonitor(12.6);
 
@@ -40,6 +42,21 @@ public class RobotSim {
                         drivetrain.drive(Double.parseDouble(parts[1]),
                                          Double.parseDouble(parts[2]));
                         drivetrain.printStatus();
+                        break;
+                    case "climber 1.5":
+                        climber.setPosition(1.5);
+                        System.out.println("climber arm extended to 1.5");
+                    case "climber 3":
+                        climber.setPosition(3);
+                        System.out.println("climber arm extended to 3");
+                        break;
+                    case "extend":
+                        climber.extendArm();
+                        System.out.println("climber arm extended");
+                        break;
+                    case "retract":
+                        climber.retractArm();
+                        System.out.println("climber arm retracted");
                         break;
                     case "stop":
                         drivetrain.stop();
@@ -80,6 +97,7 @@ public class RobotSim {
                         if (elevator != null) {
                             System.out.println("Elevator position: " + elevator.getPosition() + " meters");
                         }
+                        climber.printStatus();
                         intake.printStatus();
                         battery.printStatus();
                         // IN CLASS: After adding Loggable, try replacing this
@@ -115,5 +133,9 @@ public class RobotSim {
         System.out.println("status                Print component status");
         System.out.println("help                  Show these commands");
         System.out.println("quit                  Exit the simulator");
+        System.out.println("climber 1.5           Move the climber arm to 1.5");
+        System.out.println("climber 3             Move the climber arm to 3");
+        System.out.println("extend                Extend climber arm");
+        System.out.println("retract               Retract climber arm");
     }
 }

@@ -42,8 +42,12 @@ Update `RobotSim.java` so you can control your climber through the terminal.
 
 **Think about:**
 - Which fields and methods does `Climber` inherit from `Mechanism`?
+It inherits get Position, set position, get name, and update position.
 - Why does `Climber` need to override `setPosition()`?
+Because the function needs different things in it so it has to be a different function that overrides what is in mechanism's setposition.
 - Should `extend()` and `retract()` change the position directly or call `setPosition()`? Why?
+I think it needs to call setPosition
+
 
 ## Part 2 — Refactor the Intake
 
