@@ -10,6 +10,9 @@ package Source;
 
 public class Elevator extends Mechanism implements Loggable{
 
+    Motor motor1;
+    double motorConstant = 0.01;
+
     public Elevator () {
         super("Elevator");
     }
@@ -27,5 +30,12 @@ public class Elevator extends Mechanism implements Loggable{
     @Override 
     public void printStatus() {
         System.out.println("Wooooo");
+    }
+
+    @Override 
+    public void update(){
+        if (position >= 0 && position <= 2){
+            this.position = motor1.getSpeed()*motorConstant;
+        }
     }
 }

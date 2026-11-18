@@ -1,11 +1,12 @@
 package Source;
 
-public class Climber extends Mechanism implements Loggable{
+public class Climber extends Mechanism implements Loggable, Resettable{
 
     public Climber() {
         super("Climber");
     }
-
+    double motorConstant = 0.02;
+    Motor motor1;
     double minPosition = 0;
     double maxPosition = 5;
 
@@ -24,13 +25,22 @@ public class Climber extends Mechanism implements Loggable{
     }
 
     public void extendArm() {
-        setPosition(maxPosition);
+        motor1.setSpeed(50);
     }
 
     public void retractArm() {
-        setPosition(minPosition);
+        motor1.setSpeed(-50);
     }
 
+    public void reset(){
+        this.position = 0;
+    }
+    
+    @Override 
+    public void update(){
+        if (position <= maxPosition && position >= minPosition)
+        this.position = position + motor1.getSpeed()*motorConstant;
+    }
 
     
 }

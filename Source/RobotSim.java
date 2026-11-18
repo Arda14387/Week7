@@ -12,6 +12,8 @@ public class RobotSim {
         // IN CLASS: After writing Elevator.java, replace null with new Elevator().
         Elevator elevator = new Elevator();
 
+        BatteryMonitor batteryMonitor = new BatteryMonitor(0);
+
         Climber climber = new Climber();
 
         BatteryMonitor battery = new BatteryMonitor(12.6);
@@ -23,6 +25,18 @@ public class RobotSim {
         Scanner scanner = new Scanner(System.in);
         printHelp();
 
+        Mechanism[] updatables = new Mechanism[2];
+        updatables[0] = climber;
+        updatables[1] = elevator;
+        updatables[2] = arm;
+
+
+        Resettable[] components = new Resettable[3];
+        components[0] = batteryMonitor;
+        components[1] = climber;
+        components[2] = drivetrain;
+        components[3] = intake;
+
         boolean running = true;
         while (running) {
             System.out.print("\nrobot> ");
@@ -33,6 +47,12 @@ public class RobotSim {
 
             try {
                 switch (parts[0]) {
+                    case "update":
+                        updateAll(updatables);
+                        System.out.println("update successful");
+                    case "reset":
+                        resetAll(components);
+                        System.out.println("reset successful");
                     case "drive":
                         // Example: drive 40 40, or drive -40 40 to turn.
                         if (parts.length != 3) {
@@ -137,5 +157,21 @@ public class RobotSim {
         System.out.println("climber 3             Move the climber arm to 3");
         System.out.println("extend                Extend climber arm");
         System.out.println("retract               Retract climber arm");
+        System.out.println("update                Updates all mechanisms");
+        System.out.println("reset                 Resets all subclasses");
+    }
+
+
+
+    public static void resetAll(Resettable[] components){
+        for (int i=0;i<components.length;i++){
+            components[i].reset();
+        }
+    }
+
+    public static void updateAll(Mechanism[] updatables){
+        for (int i=0;i<updatables.length;i++){
+            updatables[i].update();
+        }
     }
 }

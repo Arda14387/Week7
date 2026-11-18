@@ -1,6 +1,6 @@
 package Source;
 // This is NOT a Mechanism: it tracks electrical information, not position.
-public class BatteryMonitor {
+public class BatteryMonitor implements Resettable{
     private double voltage;
     private double lowestVoltage;
 
@@ -21,6 +21,11 @@ public class BatteryMonitor {
     public void printStatus() {
         System.out.println("Battery: " + voltage + " V (lowest: " + lowestVoltage + " V)");
     }
+    
+    public void reset(){
+        this.lowestVoltage = this.voltage;
+    }
+
 
     // HOMEWORK: Implement Resettable and write reset() so that
     // lowestVoltage becomes the current voltage; do not change voltage.

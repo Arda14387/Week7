@@ -1,5 +1,5 @@
 package Source;
-public class Drivetrain {
+public class Drivetrain implements Resettable{
     private Motor leftLeader;
     private Motor leftFollower;
     private Motor rightLeader;
@@ -26,5 +26,12 @@ public class Drivetrain {
         leftFollower.printStatus();
         rightLeader.printStatus();
         rightFollower.printStatus();
+    }
+
+    public void reset(){
+        leftLeader.setSpeed(0);
+        leftFollower.setSpeed(0);
+        rightLeader.setSpeed(0);
+        rightFollower.setSpeed(0);
     }
 }

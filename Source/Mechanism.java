@@ -19,4 +19,8 @@ public abstract class Mechanism {
     protected void updatePosition(double position) {
         this.position = position;
     }
+
+    public abstract void update();
+
+
 }

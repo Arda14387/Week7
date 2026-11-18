@@ -160,8 +160,14 @@ Check that:
 Answer the following questions:
 
 1. Identify **one example of inheritance** and **one example of composition** in your updated program. Explain each relationship.
+
+Climber inherits Mechanism, and motor is used in Intake
+
 2. Which classes implement `Resettable`, and what does resetting mean for each one?
+BatteryMonitor, Climber, Drivetrain, and Intake.
 3. Describe **one design decision** you made independently. What alternatives did you consider, and why did you choose your approach?
+
+I made the 2nd motor for the Intake keep running because I assumed that later I could have a system outside of that function to check when it reaches 90 or 0 degrees and stop the motor. 
 
 ---
 
@@ -183,11 +189,15 @@ How could you refactor our simulator so that position-controlled mechanisms actu
 
 Consider the following questions:
 
-1. **Where should the motor live?** Should each `Arm`, `Elevator`, and `Climber` contain its own `Motor`, or should `Mechanism` contain one that all subclasses inherit?
+1. **Where should the motor live?** Should each `Arm`, `Elevator`, and `Climber` contain its own `Motor`, or should `Mechanism` contain one that all subclasses inherit? I think it should be an interface that each subclass should implement because all the subclasses use different motors.
 2. **How should movement work?** If a motor runs at 50% speed, how could your program calculate a change in position?
+speed times a constant.
 3. **What should `setPosition()` do?** Should it immediately change the position, or should it set a target position that the motor moves toward?
+Set a target position that the motor moves towards.
 4. **How should limits work?** What happens when a mechanism reaches its minimum or maximum position while its motor is still running?
+It should stop the motor.
 5. **What about Intake?** It has two motors, but only one controls its position. How should your design account for that?
+It can add a second motor that is not inherited from mechanism.
 
 ### One Possible Starting Point — `update()`
 
